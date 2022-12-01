@@ -1,0 +1,49 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: tinghai
+ * @Date: 2022-11-28 08:22:57
+ */
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+var scene = new THREE.Scene();
+
+var camera = new THREE.PerspectiveCamera(90, 1, 1, 1000);
+camera.position.set(150, 0, 200);
+scene.add(camera);
+camera.lookAt(scene.position);
+
+var cub = new THREE.BoxGeometry(100, 100, 100);
+var material = new THREE.MeshLambertMaterial({
+  color: 0xffff00,
+  // wireframe: true,
+});
+var mesh = new THREE.Mesh(cub, material);
+scene.add(mesh);
+
+var point = new THREE.PointLight(0xff0000);
+point.position.set(400, 400, 300); //点光源位置
+scene.add(point); //点光源添加到场景中
+
+var axes = new THREE.AxesHelper(110);
+scene.add(axes);
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+var orbit = new OrbitControls(camera, renderer.domElement);
+orbit.update();
+
+function render() {
+  // cub.rotateX(0.001);
+  // cub.rotateY(0.0005);
+  // cub.rotateZ(0.001);
+  orbit.update();
+  // console.log(scene);
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}
+
+render();
