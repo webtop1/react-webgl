@@ -3,9 +3,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as dat from "dat.gui";
 // 顶点着色器
-import basicVertexShader from "./shader/basic/vertex.glsl";
+import basicVertexShader from "./vertex.glsl";
 // 片元着色器
-import basicFragmentShader from "./shader/basic/fragment.glsl";
+import basicFragmentShader from "./fragment.glsl";
 
 // 目标：认识shader
 
